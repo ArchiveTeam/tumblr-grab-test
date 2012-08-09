@@ -5,6 +5,7 @@ import shutil
 import glob
 
 from seesaw.project import *
+from seesaw.config import *
 from seesaw.item import *
 from seesaw.task import *
 from seesaw.pipeline import *
@@ -101,7 +102,7 @@ pipeline = Pipeline(
   MoveFiles(),
   LimitConcurrent(1,
     RsyncUpload(
-      target = "fos.textfiles.com::tumblr/%s/" % downloader,
+      target = ConfigInterpolation("fos.textfiles.com::tumblr/%s/", downloader),
       target_source_path = ItemInterpolation("%(prefix_dir)s/"),
       files = [
         ItemInterpolation("%(warc_file_base)s.warc.gz")
