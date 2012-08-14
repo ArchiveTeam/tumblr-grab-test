@@ -106,6 +106,9 @@ pipeline = Pipeline(
       target_source_path = ItemInterpolation("%(prefix_dir)s/"),
       files = [
         ItemInterpolation("%(warc_file_base)s.warc.gz")
+      ],
+      extra_args = [
+        "--partial-dir", ".rsync-tmp"
       ]
     ),
   ),
